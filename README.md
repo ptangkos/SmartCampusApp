@@ -4,7 +4,16 @@
 
 Backend Setup:
 
-Install Java 11, Maven, and PostgreSQL.
+need Java 11, Maven, and PostgreSQL.
+run 
+
+java -version
+mvn -v
+psql --version
+node -v
+expo --version
+
+to check
 
 Create a database named campus_emergency.
 
