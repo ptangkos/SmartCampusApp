@@ -1,1 +1,0 @@
-# Smart-Campus-Emergency-Response-System-
