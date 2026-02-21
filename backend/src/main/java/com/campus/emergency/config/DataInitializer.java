@@ -4,9 +4,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import com.campus.emergency.model.Role;
+import com.campus.emergency.model.User;
+import com.campus.emergency.repository.UserRepository;
+
 import lombok.RequiredArgsConstructor;
-import main.java.com.campus.emergency.model.User;
-import main.java.com.campus.emergency.repository.UserRepository;
 
 @Component
 @RequiredArgsConstructor

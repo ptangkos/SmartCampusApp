@@ -12,16 +12,17 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+import com.campus.emergency.dto.LoginRequest;
+import com.campus.emergency.dto.RegisterRequest;
+import com.campus.emergency.model.User;
 import com.campus.emergency.security.JwtTokenProvider;
 import com.campus.emergency.service.UserService;
 
 import lombok.RequiredArgsConstructor;
-import main.java.com.campus.emergency.dto.LoginRequest;
-import main.java.com.campus.emergency.dto.RegisterRequest;
-import main.java.com.campus.emergency.model.User;
 
 @RestController
 @RequestMapping("/api/auth")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationManager authenticationManager;
@@ -37,12 +38,16 @@ public class AuthController {
         String token = tokenProvider.generateToken(authentication);
         Map<String, String> response = new HashMap<>();
         response.put("token", token);
+        response.put("spireId", loginRequest.getSpireId());
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest registerRequest) {
         User user = userService.registerUser(registerRequest);
-        return ResponseEntity.ok("User registered successfully");
+        Map<String, String> response = new HashMap<>();
+        response.put("message", "User registered successfully");
+        response.put("spireId", user.getSpireId());
+        return ResponseEntity.ok(response);
     }
 }
