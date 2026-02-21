@@ -5,7 +5,7 @@
 Backend Setup:
 
 need Java 11, Maven, and PostgreSQL.
-run 
+run below code to check
 ```
 
 java -version
@@ -14,7 +14,7 @@ psql --version
 node -v
 expo --version
 ```
-to check
+
 
 Create a database named campus_emergency.
 
