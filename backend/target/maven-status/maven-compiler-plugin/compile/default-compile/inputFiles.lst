@@ -1,3 +1,4 @@
+/Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/repository/CommentRepository.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/repository/IncidentRepository.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/model/Incident.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/model/User.java
@@ -6,6 +7,7 @@
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/config/DataInitializer.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/service/NotificationService.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/dto/LoginRequest.java
+/Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/model/Comment.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/controller/UserController.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/dto/AlertMessage.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/config/SecurityConfig.java
@@ -18,7 +20,9 @@
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/service/SeverityClassifier.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/security/JwtAuthenticationFilter.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/security/JwtTokenProvider.java
+/Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/dto/CommentRequest.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/service/IncidentService.java
+/Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/dto/CommentResponse.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/repository/AlertRepository.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/config/WebSocketConfig.java
 /Users/romaisa/Desktop/hackathon 26/SmartCampusApp/backend/src/main/java/com/campus/emergency/model/Role.java

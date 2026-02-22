@@ -35,4 +35,6 @@ export const reportIncident = async (formData) => {
 };
 export const login = (credentials) => api.post('/auth/login', credentials);
 export const register = (data) => api.post('/auth/register', data);
+export const getComments = (incidentId) => api.get(`/incidents/${incidentId}/comments`);
+export const addComment = (incidentId, data) => api.post(`/incidents/${incidentId}/comments`, data);
 export const updatePushToken = (token) => api.post('/users/push-token', { token });
