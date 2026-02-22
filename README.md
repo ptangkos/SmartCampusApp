@@ -51,13 +51,13 @@ We built it as a full-stack system with real-time communication and role-based a
 
 ![79a39a38-fa1a-4e18-a533-a099d54c5358](https://github.com/user-attachments/assets/91cb25e5-7200-4138-a434-826819f24a8c)
 
-<img width="1170" height="2532" alt="IMG_8698" src="https://github.com/user-attachments/assets/c4b98aa6-17fd-4e98-88c9-84d2283ffd66" />
+<img width="300" alt="IMG_8698" src="https://github.com/user-attachments/assets/c4b98aa6-17fd-4e98-88c9-84d2283ffd66" />
 
-<img width="1170" height="2532" alt="IMG_8699" src="https://github.com/user-attachments/assets/a54db314-8a1b-4165-ad4f-b273234fa712" />
+<img width="300" alt="IMG_8699" src="https://github.com/user-attachments/assets/a54db314-8a1b-4165-ad4f-b273234fa712" />
 
-<img width="1170" height="2532" alt="IMG_8699" src="https://github.com/user-attachments/assets/a833e836-fba0-44ef-8c99-dc0e4feb82d2" />
+<img width="300" alt="IMG_8699" src="https://github.com/user-attachments/assets/a833e836-fba0-44ef-8c99-dc0e4feb82d2" />
 
-<img width="1170" height="2532" alt="IMG_8700" src="https://github.com/user-attachments/assets/25b45f82-b0c8-4788-a3d3-eaf5e2fcafcd" />
+<img width="300" alt="IMG_8700" src="https://github.com/user-attachments/assets/25b45f82-b0c8-4788-a3d3-eaf5e2fcafcd" />
 
 
   
