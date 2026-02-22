@@ -18,7 +18,10 @@
       "supportsTablet": true,
       "infoPlist": {
         "NSCameraUsageDescription": "This app uses the camera to take incident photos",
-        "NSLocationWhenInUseUsageDescription": "This app uses your location to report incidents"
+        "NSLocationWhenInUseUsageDescription": "This app uses your location to report incidents",
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        }
       }
     },
     "android": {

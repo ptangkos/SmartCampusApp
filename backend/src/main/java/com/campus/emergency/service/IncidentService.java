@@ -1,5 +1,5 @@
 package com.campus.emergency.service;
-
+import org.springframework.transaction.annotation.Transactional;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,6 +21,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class IncidentService {
     private final IncidentRepository incidentRepository;
     private final SeverityClassifier severityClassifier;

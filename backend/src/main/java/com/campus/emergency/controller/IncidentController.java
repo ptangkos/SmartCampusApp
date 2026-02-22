@@ -3,13 +3,7 @@ package com.campus.emergency.controller;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -23,37 +17,37 @@ import com.campus.emergency.service.IncidentService;
 import com.campus.emergency.service.NotificationService;
 import com.campus.emergency.service.UserService;
 import com.campus.emergency.utils.ImageValidator;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/api/incidents")
-@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 public class IncidentController {
     private final IncidentService incidentService;
     private final NotificationService notificationService;
     private final UserService userService;
+    private final ObjectMapper objectMapper;
 
-    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(consumes = org.springframework.http.MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<IncidentResponse> createIncident(
-            @RequestPart("data") @Valid IncidentRequest request,
+            @RequestPart("data") String dataJson,
             @RequestPart(value = "image", required = false) MultipartFile image,
             @AuthenticationPrincipal UserDetails userDetails) {
+
+        IncidentRequest request;
+        try {
+            request = objectMapper.readValue(dataJson, IncidentRequest.class);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
 
         if (image != null && !ImageValidator.isFromCamera(image)) {
             return ResponseEntity.badRequest().build();
         }
 
-        User reporter = null;
-        if (userDetails != null) {
-            try {
-                reporter = userService.findBySpireId(userDetails.getUsername());
-            } catch (Exception e) {
-                // Anonymous user, reporter stays null
-            }
-        }
-
+        User reporter = userDetails != null ? userService.findBySpireId(userDetails.getUsername()) : null;
         Incident incident = incidentService.createIncident(request, image, reporter);
 
         if ("CRITICAL".equals(incident.getSeverity())) {
@@ -64,15 +58,6 @@ public class IncidentController {
         return ResponseEntity.ok(IncidentResponse.fromEntity(incident));
     }
 
-    @GetMapping
-    public List<IncidentResponse> getIncidents(
-            @RequestParam(required = false) String category,
-            @RequestParam(required = false) String severity,
-            @RequestParam(required = false) String status) {
-        return incidentService.getFilteredIncidents(category, severity, status);
-    }
-
-    // Fix #14: Add single incident detail endpoint
     @GetMapping("/{id}")
     public ResponseEntity<IncidentResponse> getIncidentById(@PathVariable Long id) {
         return incidentService.getIncidentById(id)
@@ -80,16 +65,12 @@ public class IncidentController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // Fix #13: Add image retrieval endpoint
-    @GetMapping("/{id}/image")
-    public ResponseEntity<byte[]> getIncidentImage(@PathVariable Long id) {
-        byte[] image = incidentService.getIncidentImage(id);
-        if (image == null) {
-            return ResponseEntity.notFound().build();
-        }
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_JPEG);
-        return new ResponseEntity<>(image, headers, HttpStatus.OK);
+    @GetMapping
+    public List<IncidentResponse> getIncidents(
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) String severity,
+            @RequestParam(required = false) String status) {
+        return incidentService.getFilteredIncidents(category, severity, status);
     }
 
     @GetMapping("/feed")
@@ -100,19 +81,5 @@ public class IncidentController {
     @GetMapping("/heatmap")
     public List<Object[]> getHeatmap() {
         return incidentService.getHeatmapData();
-    }
-
-    // Fix #9: Add PATCH endpoint for incident status updates
-    @PatchMapping("/{id}/status")
-    public ResponseEntity<IncidentResponse> updateStatus(
-            @PathVariable Long id,
-            @RequestBody Map<String, String> body) {
-        String newStatus = body.get("status");
-        if (newStatus == null) {
-            return ResponseEntity.badRequest().build();
-        }
-        return incidentService.updateIncidentStatus(id, newStatus)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
     }
 }
