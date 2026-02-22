@@ -51,6 +51,7 @@ We built it as a full-stack system with real-time communication and role-based a
 
 
 
+<img width="1170" height="2532" alt="IMG_8698" src="https://github.com/user-attachments/assets/63c9863c-67a6-403e-a482-ad140d5fb4b1" />
 
 
   
