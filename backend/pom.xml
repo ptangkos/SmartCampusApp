@@ -15,7 +15,10 @@
     <name>Smart Campus Emergency</name>
     <description>Backend for Smart Campus Emergency Response System</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>21</java.version>
+        <!-- Pornnapin add -->
+        <lombok.version>1.18.34</lombok.version> 
+        <maven.compiler.release>17</maven.compiler.release>
     </properties>
     <dependencies>
         <dependency>
@@ -61,9 +64,25 @@
     </dependencies>
     <build>
         <plugins>
+            <!-- Compiler plugin – ensures Java 21 outputs Java 17 bytecode -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+            </plugin>
+
+            <!-- Spring Boot plugin – required for spring-boot:run and repackaging -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.7.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

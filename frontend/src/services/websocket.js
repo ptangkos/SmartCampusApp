@@ -4,7 +4,7 @@ import SockJS from 'sockjs-client';
 let stompClient = null;
 
 export const initWebSocket = () => {
-  const socket = new SockJS('https://your-backend-url.com/ws'); // Replace with your backend URL
+  const socket = new SockJS('http://172.31.39.0:8080/ws'); // Replace with your backend URL
   stompClient = new Client({
     webSocketFactory: () => socket,
     debug: (str) => console.log(str),
