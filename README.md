@@ -20,6 +20,8 @@ Create a database named campus_emergency.
 
 Update application.properties with your database credentials.
 
+Open the file src/main/resources/application.properties and update the spring.datasource.username and spring.datasource.password with your PostgreSQL credentials.
+
 Run mvn spring-boot:run from the backend folder.
 
 Frontend Setup:
