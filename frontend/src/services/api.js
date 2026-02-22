@@ -20,9 +20,7 @@ export const getFeed = () => api.get('/incidents/feed');
 export const getIncidents = () => api.get('/incidents');
 export const getIncidentById = (id) => api.get(`/incidents/${id}`);
 export const getResources = () => api.get('/resources');
-export const reportIncident = (formData) => api.post('/incidents', formData, {
-  headers: { 'Content-Type': 'multipart/form-data' },
-});
+export const reportIncident = (formData) => api.post('/incidents', formData);
 export const login = (credentials) => api.post('/auth/login', credentials);
 export const register = (data) => api.post('/auth/register', data);
 export const updatePushToken = (token) => api.post('/users/push-token', { token });

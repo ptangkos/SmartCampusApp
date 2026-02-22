@@ -1,5 +1,5 @@
-import { Camera } from 'expo-camera';
-import React, { useRef, useState } from 'react';
+import { CameraView, useCameraPermissions } from 'expo-camera';
+import { useRef, useState } from 'react';
 import { Alert, Image, ScrollView, StyleSheet, Switch, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { reportIncident } from '../services/api';
 import { getCurrentLocation } from '../utils/location';
@@ -11,15 +11,27 @@ export default function ReportScreen({ navigation }) {
   const [image, setImage] = useState(null);
   const [spireId, setSpireId] = useState('');
   const [fullName, setFullName] = useState('');
-  const [hasPermission, setHasPermission] = useState(null);
+  const [facing, setFacing] = useState('back');
   const cameraRef = useRef(null);
 
-  React.useEffect(() => {
-    (async () => {
-      const { status } = await Camera.requestCameraPermissionsAsync();
-      setHasPermission(status === 'granted');
-    })();
-  }, []);
+  const [permission, requestPermission] = useCameraPermissions();
+
+  if (!permission) {
+    // Camera permissions are still loading.
+    return <View />;
+  }
+
+  if (!permission.granted) {
+    // Camera permissions are not granted yet.
+    return (
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
+        <TouchableOpacity onPress={requestPermission} style={styles.captureButton}>
+          <Text style={styles.buttonText}>Grant Permission</Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
   const takePicture = async () => {
     if (cameraRef.current) {
@@ -60,12 +72,13 @@ export default function ReportScreen({ navigation }) {
     }
   };
 
-  if (hasPermission === null) return <View />;
-  if (hasPermission === false) return <Text>No access to camera</Text>;
-
   return (
     <ScrollView style={styles.container}>
-      <Camera ref={cameraRef} style={styles.camera} type={Camera.Constants.Type.back} />
+      <CameraView 
+        ref={cameraRef} 
+        style={styles.camera} 
+        facing={facing}
+      />
       <TouchableOpacity onPress={takePicture} style={styles.captureButton}>
         <Text style={styles.buttonText}>Take Picture</Text>
       </TouchableOpacity>
